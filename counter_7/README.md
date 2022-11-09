@@ -1,16 +1,34 @@
-# counter_7
+Jelaskan apa yang dimaksud dengan stateless widget dan stateful widget dan jelaskan perbedaan dari keduanya
 
-A new Flutter project.
+Stateful merupakan widget yang dapat berubah sesuai dengan statenya sedangkan stateless widget tidak berubah apapun statenya.
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
+Sebutkan widget apa saja yang kamu pakai di proyek kali ini dan jelaskan fungsinya
 
-A few resources to get you started if this is your first Flutter project:
+1. Row
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Row beguna untuk menyimpan widget dalam horizontal
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2. FloatingActionButton
+
+Merupakan button yang berada paling atas disemua aplikasi sehingga tidak akan tertutup oleh apapun
+
+
+Apa fungsi dari setState()? Jelaskan variabel apa saja yang dapat terdampak dengan fungsi tersebut
+
+Fungsi dari setState() adalah memberitahu bahwa terjadi perubahan state maka yang harus dikerjakannya adalah menjalankan build lagi
+
+
+Jelaskan perbedaan antara const dengan final
+
+const nilainya harus diketahui saat compile time sedangkan final nilainya harus diketahui saat run time
+
+
+Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas
+
+Saya membuat fungsi increment dan decrement untuk menambah atau mengurangi counter. Saya juga membuat fungsi check untuk mengetahui apakah textnya harus ganjil atau genap. Setelah itu saya menambahkan dua floating button di dalam row agar buttonnya ada di suatu garis horizontal.
+
+
+
+
+
