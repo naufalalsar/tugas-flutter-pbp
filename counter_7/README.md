@@ -1,3 +1,7 @@
+## Muhammad Naufal Zaky Alsar - 2106752041
+
+## counter_7 (Tugas 7)
+
 ### Jelaskan apa yang dimaksud dengan stateless widget dan stateful widget dan jelaskan perbedaan dari keduanya
 
 Stateful merupakan widget yang dapat berubah sesuai dengan statenya sedangkan stateless widget tidak berubah apapun statenya.
