@@ -1,17 +1,17 @@
-import 'package:counter_7/main.dart';
 import 'package:flutter/material.dart';
-import 'package:counter_7/data.dart';
 import 'package:flutter/services.dart';
+import 'package:counter_7/drawer.dart';
 
 class Budget {
   String judul;
   int nominal;
   String tipe;
+  DateTime date;
 
-  Budget(this.judul, this.nominal, this.tipe);
+  Budget(this.judul, this.nominal, this.tipe, this.date);
 }
 
-class Naro{
+class Naro {
   static List<Budget> contain = <Budget>[];
 }
 
@@ -26,8 +26,9 @@ class _MyFormPageState extends State<MyFormPage> {
   final _formKey = GlobalKey<FormState>();
   String _judul = "";
   int _nominal = 0;
-  String jenis = 'Pemasukan';
+  String jenis = "Pemasukan";
   List<String> listJenis = ['Pemasukan', 'Pengeluaran'];
+  DateTime date = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -36,43 +37,7 @@ class _MyFormPageState extends State<MyFormPage> {
         title: Text("Form"),
       ),
       // Menambahkan drawer menu
-      drawer: Drawer(
-        child: Column(
-          children: [
-            // Menambahkan clickable menu
-           ListTile(
-            title: const Text('counter_7'),
-            onTap: () {
-              // Route menu ke halaman utama
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const MyHomePage(title:"counter_7")),
-              );
-            },
-          ),
-          ListTile(
-            title: const Text('Tambah Budget'),
-            onTap: () {
-              // Route menu ke halaman form
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const MyFormPage()),
-              );
-            },
-          ),
-           ListTile(
-            title: const Text('Data Budget'),
-            onTap: () {
-              // Route menu ke halaman form
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const MyDataPage()),
-              );
-            },
-          ),
-          ],
-        ),
-      ),
+      drawer: TheSideBar(),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -112,37 +77,45 @@ class _MyFormPageState extends State<MyFormPage> {
                 ),
               ),
               Padding(
-                // Menggunakan padding sebesar 8 pixels
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-            keyboardType: TextInputType.number,
-            inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
-             onChanged: (String? value) {
-                    setState(() {
-                      _nominal = int.parse(value!);
-                    });
-                  },
-                  // Menambahkan behavior saat data disimpan
-                  onSaved: (String? value) {
-                    setState(() {
-                      _nominal = int.parse(value!);
-                    });
-                  },
-                  // Validator sebagai validasi form
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Nominal tidak boleh kosong!';
-                    }
-                    return null;
-                  },
-) 
-              ),
+                  // Menggunakan padding sebesar 8 pixels
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: "Nominal",
+                      // Menambahkan circular border agar lebih rapi
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                    ),
+                    keyboardType: TextInputType.number,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ],
+                    onChanged: (String? value) {
+                      setState(() {
+                        _nominal = int.parse(value!);
+                      });
+                    },
+                    // Menambahkan behavior saat data disimpan
+                    onSaved: (String? value) {
+                      setState(() {
+                        _nominal = int.parse(value!);
+                      });
+                    },
+                    // Validator sebagai validasi form
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Nominal tidak boleh kosong!';
+                      }
+                      return null;
+                    },
+                  )),
               ListTile(
-                leading: const Icon(Icons.class_),
                 title: const Text(
-                  'Tipe',
+                  'Pilih Jenis',
                 ),
                 trailing: DropdownButton(
+                  hint: const Text('Pilih Jenis'),
                   value: jenis,
                   icon: const Icon(Icons.keyboard_arrow_down),
                   items: listJenis.map((String items) {
@@ -158,6 +131,28 @@ class _MyFormPageState extends State<MyFormPage> {
                   },
                 ),
               ),
+              OutlinedButton.icon(
+                  onPressed: () {
+                    showDatePicker(
+                            context: context,
+                            initialDate: date,
+                            firstDate: DateTime(1945),
+                            lastDate: DateTime(2077))
+                        .then((selectedDate) {
+                      setState(() {
+                        if (selectedDate != null) {
+                          date = selectedDate;
+                        }
+                      });
+                    });
+                  },
+                  style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ))),
+                  icon: const Icon(Icons.date_range),
+                  label: const Text("Pilih Tanggal (Default tanggal sekarang)")),
               TextButton(
                 child: const Text(
                   "Simpan",
@@ -198,7 +193,7 @@ class _MyFormPageState extends State<MyFormPage> {
                         );
                       },
                     );
-                    Naro.contain.add(Budget(_judul, _nominal, jenis));
+                    Naro.contain.add(Budget(_judul, _nominal, jenis!, date));
                   }
                 },
               ),
