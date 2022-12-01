@@ -193,7 +193,7 @@ class _MyFormPageState extends State<MyFormPage> {
                         );
                       },
                     );
-                    Naro.contain.add(Budget(_judul, _nominal, jenis!, date));
+                    Naro.contain.add(Budget(_judul, _nominal, jenis, date));
                   }
                 },
               ),
