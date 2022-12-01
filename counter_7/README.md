@@ -1,21 +1,3 @@
-<<<<<<< HEAD
-# counter_7
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-=======
 ## Muhammad Naufal Zaky Alsar - 2106752041
 
 ## counter_7 (Tugas 7)
@@ -88,9 +70,3 @@ Cara kerjanya seperti stack dan di top of stack merupakan halaman sekarang dan j
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas
 
 Membuat 2 file baru dan mengisinya sesuai kententuan soal dengan form dan listview dan membuat class buat menyimpan data-datanya menggunakan list.
-
-
-
-
-
->>>>>>> 369728e8ae96f0e80435c4a9beb70fcbfd251588
